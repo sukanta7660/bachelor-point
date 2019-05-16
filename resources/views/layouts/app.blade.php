@@ -17,6 +17,9 @@
 <body class="bg-dark">
 
 <div class="container">
+    <div class="row">
+        <h1 class="mx-auto mt-5 text-white">Bachelor's <span class="text-white-50">Point</span></h1>
+    </div>
     @yield('content')
 </div>
 
