@@ -4,6 +4,11 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
+            @if(session()->has('successMsg'))
+                <div class="alert alert-success">
+                    {{ session()->get('successMsg') }}
+                </div>
+            @endif
             <form action="{{ route('login') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @error('email')

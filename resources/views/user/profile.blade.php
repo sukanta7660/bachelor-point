@@ -12,6 +12,15 @@
     </ol>
     <div class="row">
         <div class="col-md-12 col-xl-12 mb-3 text-center">
+            @if(session()->has('errorMsg'))
+                <div class="alert alert-danger">
+                    {{ session()->get('errorMsg') }}
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xl-12 mb-3 text-center">
             <hr>
             <h3>{{Auth::user()->name}}</h3>
             <hr>
@@ -31,18 +40,30 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card card-body">
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="{{action('Auth\ChangePasswordController@change_password')}}" method="post" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+
                                 <div class="form-group">
                                     <label for="old">Old Password</label>
-                                    <input id="old" name="old_pass" class="form-control form-control-sm" type="password">
+                                    <input id="old" name="oldpassword" class="form-control form-control-sm @error('oldpassword') is-invalid @enderror" value="{{old('oldpassword')}}" autofocus type="password">
                                 </div>
+                                @if($errors->has('oldpassword'))
+                                    <span class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('oldpassword') }}</strong>
+                                </span>
+                                @endif
                                 <div class="form-group">
                                     <label for="new">New Password</label>
-                                    <input id="new" name="new_pass" class="form-control form-control-sm" type="password">
+                                    <input id="new" name="password" class="form-control form-control-sm @error('password') is-invalid @enderror" type="password">
                                 </div>
+                                @if($errors->has('password'))
+                                    <span class="text-danger" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                @endif
                                 <div class="form-group">
                                     <label for="confirm">Confirm New Password</label>
-                                    <input id="confirm" name="confirm_pass" class="form-control form-control-sm" type="password">
+                                    <input id="confirm" name="password_confirmation" class="form-control form-control-sm" type="password">
                                 </div>
                                 <button type="submit" class="btn btn-success btn-sm">Save Changes</button>
                             </form>

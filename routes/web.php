@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('user','User\UserController@index');
     Route::get('user/profile','User\UserController@profile');
     Route::post('user/profile/update','User\UserController@profile_info');
+    Route::post('user/password/update','Auth\ChangePasswordController@change_password');
     //============ /User =============
 });
 
