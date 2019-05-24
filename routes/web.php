@@ -12,6 +12,13 @@
 */
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/','MainController@index');
+
+
+    //============ User ==============
+    Route::get('user','User\UserController@index');
+    Route::get('user/profile','User\UserController@profile');
+    Route::post('user/profile/update','User\UserController@profile_info');
+    //============ /User =============
 });
 
 

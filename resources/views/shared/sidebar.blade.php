@@ -22,9 +22,14 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Charts</span></a>
+    </li>
+    <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+        <a class="nav-link" href="{{action('User\UserController@index')}}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Users</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#">

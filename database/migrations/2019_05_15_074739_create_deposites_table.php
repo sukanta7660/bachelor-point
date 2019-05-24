@@ -14,7 +14,12 @@ class CreateDepositesTable extends Migration
     public function up()
     {
         Schema::create('deposites', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('depositID');
+            $table->double('amount')->default(0);
+            $table->unsignedBigInteger('monthID')->index()->nullable();
+            $table->foreign('monthID')->references('monthID')->on('months')->onDelete('cascade')->onUpdate('No Action');
+            $table->unsignedBigInteger('userID')->index()->nullable();
+            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade')->onUpdate('No Action');
             $table->timestamps();
         });
     }

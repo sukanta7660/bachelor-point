@@ -14,7 +14,13 @@ class CreateExpensesTable extends Migration
     public function up()
     {
         Schema::create('expenses', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('expenseID');
+            $table->string('name',200);
+            $table->double('amount')->default(0);
+            $table->unsignedBigInteger('monthID')->index()->nullable();
+            $table->foreign('monthID')->references('monthID')->on('months')->onDelete('cascade')->onUpdate('No Action');
+            $table->unsignedBigInteger('userID')->index()->nullable();
+            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade')->onUpdate('No Action');
             $table->timestamps();
         });
     }
