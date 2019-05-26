@@ -22,7 +22,7 @@ class ChangePasswordController extends Controller
         if (Hash::check($request->oldpassword,$hashedPass)){
 
             $user = User::find(Auth::user()->id);
-            $user->password = Hash::make('password');
+            $user->password = Hash::make($request->password);
             $user->save();
             Auth::logout();
             return redirect()->route('login')->with('successMsg',"Password changed Successfully");
