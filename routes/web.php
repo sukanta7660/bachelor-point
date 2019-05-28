@@ -18,8 +18,15 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('user','User\UserController@index');
     Route::get('user/profile','User\UserController@profile');
     Route::post('user/profile/update','User\UserController@profile_info');
+    Route::get('user/check','User\UserController@check');
     Route::post('user/password/update','Auth\ChangePasswordController@change_password');
     //============ /User =============
+
+
+    //============ Month =============
+    Route::get('month','Month\MonthController@index');
+    Route::post('month/save','Month\MonthController@save');
+    //============ /Month ============
 });
 
 

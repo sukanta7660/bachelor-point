@@ -12,6 +12,7 @@
     <!-- Page level plugin CSS-->
     <link href="{{asset('public/assets/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
     <!-- Custom styles for this template-->
+    <link href="{{asset('public/custom.css')}}" rel="stylesheet">
     <link href="{{asset('public/assets/css/sb-admin.css')}}" rel="stylesheet">
 
 </head>
@@ -26,7 +27,9 @@
     <div id="content-wrapper">
         <div class="container-fluid">
             @yield('content')
-        </div>
+
+            @yield('box')
+    </div>
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
@@ -49,7 +52,7 @@
 <!-- Custom scripts for all pages-->
 <script src="{{asset('public/assets/js/sb-admin.min.js')}}"></script>
 <script src="{{asset('public/assets/js/demo/datatables-demo.js')}}"></script>
-
+@yield('script')
 </body>
 
 </html>

@@ -28,7 +28,7 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <img style="max-width: 100%" src="{{asset('public/upload/profile/image-placeholder-350x350.png')}}" alt="">
+            <img class="rounded-circle" style="max-width: 100%" src="{{asset('public/upload/profile/image-placeholder-350x350.png')}}" alt="">
         </div>
         <div class="col-md-9 mt-3">
             <p><span class="text-success">Name: </span>{{Auth::user()->name}}</p>

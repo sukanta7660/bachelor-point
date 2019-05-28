@@ -15,7 +15,7 @@ class CreateMonthsTable extends Migration
     {
         Schema::create('months', function (Blueprint $table) {
             $table->bigIncrements('monthID');
-            $table->string('monthName',100);
+            $table->date('monthName');
             $table->unsignedBigInteger('userID')->index()->nullable();
             $table->foreign('userID')->references('id')->on('users')->onDelete('cascade')->onUpdate('No Action');
             $table->timestamps();
