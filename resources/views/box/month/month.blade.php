@@ -30,8 +30,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="pwd">Month:</label>
-                                    <input class="form-control form-control-sm" name="month" type="date" id="pwd">
+                                    <label for="datepicker">Month:</label>
+                                    <input class="form-control form-control-sm" name="month" type="text" id="datepicker">
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="#" method="post" id="ediForm" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" id="ediID" name="monthID">
                     <div class="modal-body">
@@ -85,8 +85,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="pwd">Month:</label>
-                                    <input class="form-control form-control-sm" name="month" type="date" id="pwd">
+                                    <label for="datepicker1">Month:</label>
+                                    <input class="form-control form-control-sm" name="month"  type="text" id="datepicker1">
                                 </div>
                             </div>
                         </div>

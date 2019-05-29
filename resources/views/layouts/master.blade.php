@@ -13,6 +13,7 @@
     <link href="{{asset('public/assets/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="{{asset('public/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/css/jquery-ui.css')}}" rel="stylesheet">
     <link href="{{asset('public/assets/css/sb-admin.css')}}" rel="stylesheet">
 
 </head>
@@ -51,6 +52,7 @@
 <script src="{{asset('public/assets/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 <!-- Custom scripts for all pages-->
 <script src="{{asset('public/assets/js/sb-admin.min.js')}}"></script>
+<script src="{{asset('public/assets/js/jquery-ui.js')}}"></script>
 <script src="{{asset('public/assets/js/demo/datatables-demo.js')}}"></script>
 @yield('script')
 </body>

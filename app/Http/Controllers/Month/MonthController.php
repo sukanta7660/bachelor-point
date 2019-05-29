@@ -21,6 +21,12 @@ class MonthController extends Controller
         $table->month_date = db_date($request->month).' '.date('0:0:0');
         $table->save();
 
-        return redirect()->back()->with('success','Month Created Successfully!!');
+        return redirect()->back()->with('success','Data Created Successfully!!');
+    }
+
+    public function del($id){
+        $table = Month::find($id);
+        $table->delete();
+        return redirect()->back()->with('delete','Data Deleted Successfully!!');
     }
 }

@@ -16,6 +16,11 @@
             {{ session()->get('success') }}
         </div>
     @endif
+    @if(session()->has('delete'))
+        <div class="alert alert-danger">
+            {{ session()->get('delete') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-2 col-xl-2 mb-3">
             <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#myModal">Create New Month</button>
@@ -50,7 +55,7 @@
                             <td class="text-right pt-0 pb-0">
                                 <a href="#" class="btn btn-info btn-sm p-0 pr-1 pl-1" title="details"><i class="fa fa-arrow-right"></i></a>
                                 <button title="edit" class="btn btn-primary btn-sm p-0 ediBtn" data-id="{{$row->monthID}}" data-month="{{date('m/d/y', strtotime($row->month_date))}}" data-toggle="modal" data-target="#myEdiModal"><i class="fa fa-edit"></i></button>
-                                <a href="#" title="delete" onclick="return confirm('Are you sure to Delete?')" class="btn btn-danger btn-sm p-0"><i class="fa fa-trash-alt"></i></a>
+                                <a href="{{url('month/del',['id' => $row->monthID])}}" title="delete" onclick="return confirm('Are you sure to Delete?')" class="btn btn-danger btn-sm p-0"><i class="fa fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -65,7 +70,7 @@
         $(function () {
             $('.ediBtn').click(function () {
                 var id = $(this).data('id');
-                var month = $(this).data('name');
+                var month = $(this).data('month');
 
 
                 $('#ediID').val(id);
@@ -73,6 +78,10 @@
 
             });
         });
+        $( function() {
+            $( "#datepicker" ).datepicker();
+            $( "#datepicker1" ).datepicker();
+        } );
         $(function () {
 
             $('.dataTable').DataTable({

@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth']], function(){
     //============ Month =============
     Route::get('month','Month\MonthController@index');
     Route::post('month/save','Month\MonthController@save');
+    Route::get('month/del/{id}','Month\MonthController@del');
     //============ /Month ============
 });
 
