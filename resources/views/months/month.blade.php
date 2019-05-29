@@ -16,6 +16,11 @@
             {{ session()->get('success') }}
         </div>
     @endif
+    @if(session()->has('edit'))
+        <div class="alert alert-info">
+            {{ session()->get('edit') }}
+        </div>
+    @endif
     @if(session()->has('delete'))
         <div class="alert alert-danger">
             {{ session()->get('delete') }}
@@ -53,7 +58,7 @@
                             <td class="pt-0 pb-0">{{$row->monthID}}</td>
                             <td class="pt-0 pb-0">{{$row->monthID}}</td>
                             <td class="text-right pt-0 pb-0">
-                                <a href="#" class="btn btn-info btn-sm p-0 pr-1 pl-1" title="details"><i class="fa fa-arrow-right"></i></a>
+                                <a href="{{url('month/inner',['id' => $row->monthID])}}" class="btn btn-info btn-sm p-0 pr-1 pl-1" title="details"><i class="fa fa-arrow-right"></i></a>
                                 <button title="edit" class="btn btn-primary btn-sm p-0 ediBtn" data-id="{{$row->monthID}}" data-month="{{date('m/d/y', strtotime($row->month_date))}}" data-toggle="modal" data-target="#myEdiModal"><i class="fa fa-edit"></i></button>
                                 <a href="{{url('month/del',['id' => $row->monthID])}}" title="delete" onclick="return confirm('Are you sure to Delete?')" class="btn btn-danger btn-sm p-0"><i class="fa fa-trash-alt"></i></a>
                             </td>
@@ -78,10 +83,6 @@
 
             });
         });
-        $( function() {
-            $( "#datepicker" ).datepicker();
-            $( "#datepicker1" ).datepicker();
-        } );
         $(function () {
 
             $('.dataTable').DataTable({

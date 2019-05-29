@@ -13,6 +13,7 @@ class MonthController extends Controller
         return view('months.month')->with(['table'=>$table]);
     }
 
+
     public function save(Request $request){
         $table = new Month();
         $request->validate([
@@ -24,9 +25,31 @@ class MonthController extends Controller
         return redirect()->back()->with('success','Data Created Successfully!!');
     }
 
+    public function edit(Request $request){
+        $table = Month::find($request->monthID);
+        $request->validate([
+            'month' => 'required',
+        ]);
+        $table->month_date = db_date($request->month).' '.date('0:0:0');
+        $table->save();
+
+        return redirect()->back()->with('edit','Data edited Successfully!!');
+    }
+
     public function del($id){
         $table = Month::find($id);
         $table->delete();
         return redirect()->back()->with('delete','Data Deleted Successfully!!');
+    }
+
+// inner dashboard
+
+    public function inner($id){
+        $table = Month::find($id);
+        session([
+            'monthID' => $table->monthID,
+            'month_date' => $table->month_date
+        ]);
+        return view('inner');
     }
 }

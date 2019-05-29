@@ -22,14 +22,14 @@
 
 <div id="wrapper">
     <!-- Sidebar -->
-    @include('shared.sidebar')
+    @include('shared.asside')
 
     <div id="content-wrapper">
         <div class="container-fluid">
             @yield('content')
 
             @yield('box')
-    </div>
+        </div>
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->

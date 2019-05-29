@@ -26,8 +26,15 @@ Route::group(['middleware' => ['auth']], function(){
     //============ Month =============
     Route::get('month','Month\MonthController@index');
     Route::post('month/save','Month\MonthController@save');
+    Route::post('month/edit','Month\MonthController@edit');
     Route::get('month/del/{id}','Month\MonthController@del');
-    //============ /Month ============
+
+    Route::get('month/inner/{id}','Month\MonthController@inner');
+    //============ /Month =============
+
+    //============ Expense =============
+    Route::get('expense','Expense\ExpenseController@index');
+    //============ /Expense ============
 });
 
 

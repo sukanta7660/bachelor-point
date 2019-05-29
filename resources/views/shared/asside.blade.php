@@ -5,10 +5,10 @@
             <span>Dashboard</span>
         </a>
     </li>
-    <li class="nav-item {{ Request::is('month') ? 'active' : '' }}">
-        <a class="nav-link" href="{{url('month')}}">
-            <i class="fas fa-fw fa-calendar-alt"></i>
-            <span>Months</span></a>
+    <li class="nav-item {{ Request::is('expense') ? 'active' : '' }}">
+        <a class="nav-link" href="{{url('expense')}}">
+            <i class="fas fa-fw fa-shopping-basket"></i>
+            <span>Expense</span></a>
     </li>
     <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
         <a class="nav-link" href="{{url('user')}}">

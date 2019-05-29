@@ -31,7 +31,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="datepicker">Month:</label>
-                                    <input class="form-control form-control-sm" name="month" type="text" id="datepicker">
+                                    <input class="form-control form-control-sm" name="month" type="date">
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="#" method="post" id="ediForm" enctype="multipart/form-data">
+                <form action="{{url('month/edit')}}" method="post" id="ediForm" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <input type="hidden" id="ediID" name="monthID">
                     <div class="modal-body">
@@ -86,7 +86,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="datepicker1">Month:</label>
-                                    <input class="form-control form-control-sm" name="month"  type="text" id="datepicker1">
+                                    <input class="form-control form-control-sm" name="month"  type="date">
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
 
                     <!--Footer-->
                     <div class="modal-footer justify-content-center">
-                        <button type="submit" class="btn btn-info btn-sm">Save Month</button>
+                        <button type="submit" class="btn btn-info btn-sm">Save Changes</button>
                         <button type="button" class="btn btn-outline-info btn-sm text-black-50" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
