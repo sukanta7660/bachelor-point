@@ -6,14 +6,14 @@
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
+            <a href="{{url('/')}}">Dashboard</a>
         </li>
         <li class="breadcrumb-item active">Overview</li>
     </ol>
     <div class="row">
         <div class="col-md-12 col-xl-12 mb-3">
             <hr>
-            <h4 class="text-muted text-center">{{date('F, Y')}}</h4>
+            <h4 class="text-muted text-center">{{date('F, Y', strtotime($table->month_date))}}</h4>
             <hr>
         </div>
     </div>
@@ -42,7 +42,7 @@
                         <i class="fas fa-fw fa-list"></i>
                     </div>
                     <div class="">Total Expense</div>
-                    <div class="mt-2">15000 TK.</div>
+                    <div class="mt-2">{{money($total_expense)}}</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                     <span class="float-right">

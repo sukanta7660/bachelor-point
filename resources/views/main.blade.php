@@ -42,7 +42,7 @@
                         <i class="fas fa-fw fa-list"></i>
                     </div>
                     <div class="">Total Expense</div>
-                    <div class="mt-2">15000 TK.</div>
+                    <div class="mt-2">{{money(0)}}</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                     <span class="float-right">

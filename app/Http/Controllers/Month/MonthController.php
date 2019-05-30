@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Month;
 use App\Month;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class MonthController extends Controller
 {
@@ -46,10 +47,11 @@ class MonthController extends Controller
 
     public function inner($id){
         $table = Month::find($id);
+        $total_expense = DB::table('expenses')->select('amount')->where('monthID', session('monthID'))->sum('amount');
         session([
             'monthID' => $table->monthID,
             'month_date' => $table->month_date
         ]);
-        return view('inner');
+        return view('inner')->with(['table' => $table, 'total_expense' => $total_expense]);
     }
 }
