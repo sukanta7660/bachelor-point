@@ -22,4 +22,40 @@ class ExpenseController extends Controller
         $users = User::orderBy('name','ASC')->get();
         return view('inner.expense')->with(['table'=>$table,'total_expense' => $total_expense,'users' => $users,'total_row' => $total_row]);
     }
+
+
+    public function save(Request $request){
+        $table = new Expense();
+        $request->validate([
+            'name' => 'required',
+            'amount' => 'required | min:0',
+        ]);
+        $table->name = $request->name;
+        $table->amount = $request->amount;
+        $table->monthID = session('monthID');
+        $table->userID = $request->userID;
+        $table->save();
+
+        return redirect()->back()->with('success','Data Added Successfully!!');
+    }
+
+    public function edit(Request $request){
+        $table = Expense::find($request->id);
+        $request->validate([
+            'name' => 'required',
+            'amount' => 'required | min:0',
+        ]);
+        $table->name = $request->name;
+        $table->amount = $request->amount;
+        $table->userID = $request->userID;
+        $table->save();
+
+        return redirect()->back()->with('edit','Data Edited Successfully!!');
+    }
+
+    public function del($id){
+        $table = Expense::find($id);
+        $table->delete();
+        return redirect()->back()->with('delete','Data Deleted Successfully!!');
+    }
 }

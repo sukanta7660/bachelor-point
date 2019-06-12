@@ -12,6 +12,13 @@
         $amount1 = abs($amount);
         return 'Tk '.number_format($amount1, 2);
     }
+    function meal($meal){
+        return number_format($meal, 1);
+    }
+
+function pub_num($number){
+    return number_format($number, 2);
+}
 
     function pub_date($date){
         if($date == ''){

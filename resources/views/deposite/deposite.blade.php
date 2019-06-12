@@ -1,7 +1,7 @@
-@extends('layouts.master')
-@extends('box.user.user')
+@extends('layouts.inner')
+@extends('box.deposite.deposite')
 @section('title')
-    Users
+    Deposite
 @endsection
 @section('content')
     <!-- Breadcrumbs-->
@@ -9,7 +9,7 @@
         <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Members</li>
+        <li class="breadcrumb-item active">Deposite</li>
     </ol>
     @if(session()->has('success'))
         <div class="alert alert-success">
@@ -28,42 +28,39 @@
     @endif
     <div class="row">
         <div class="col-md-2 col-xl-2 mb-3">
-            <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#myModal">Add New Member</button>
+            <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#myModal">Add New Deposite</button>
         </div>
     </div>
     <!-- DataTables Example -->
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fas fa-users"></i>
-            All Members</div>
+            <i class="fas fa-download"></i>
+            All Deposits</div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
                         <th>S/N</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Rule</th>
+                        <th>Date</th>
+                        <th>Member</th>
+                        <th class="text-right">Amount</th>
                         <th class="text-right">Action</th>
                     </tr>
                     </thead>
-                    @php
-                    $i=1;
-                    @endphp
                     <tbody>
                     @foreach($table as $row)
-                    <tr>
-                        <td>{{$i++}}</td>
-                        <td><img width="30" height="30" src="{{asset('public/upload/profile/'.$row->imageName)}}" alt="user image"></td>
-                        <td>{{$row->name}}</td>
-                        <td>{{$row->userType}}</td>
-                        <td class="text-right">
-                            <button title="edit" class="btn btn-primary btn-sm p-0 ediBtn" data-id="{{$row->id}}" data-name="{{$row->name}}" data-email="{{$row->email}}" data-image="{{asset('public/upload/profile/'.$row->imageName)}}" data-toggle="modal" data-target="#myEdiModal"><i class="fa fa-edit"></i></button>
-                            <a href="{{url('user/del',['id' => $row->id])}}" title="delete" onclick="return confirm('Are you sure to Delete?')" class="btn btn-danger btn-sm p-0"><i class="fa fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                        @endforeach
+                        <tr>
+                            <td class="pt-0 pb-0">{{$row->depositID}}</td>
+                            <td class="pt-0 pb-0">{{pub_date($row->created_at)}}</td>
+                            <td class="pt-0 pb-0">{{$row->members['name']}}</td>
+                            <td class="text-right pt-0 pb-0">{{money($row->amount)}}</td>
+                            <td class="text-right pt-0 pb-0">
+                                <button title="edit" class="btn btn-primary btn-sm p-0 ediBtn" data-id="{{$row->depositID}}" data-amount="{{$row->amount}}" data-member="{{$row->userID}}" data-toggle="modal" data-target="#myEdiModal"><i class="fa fa-edit"></i></button>
+                                <a href="{{url('deposit/del',['id' => $row->depositID])}}" title="delete" onclick="return confirm('Are you sure to Delete?')" class="btn btn-danger btn-sm p-0"><i class="fa fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -75,15 +72,15 @@
         $(function () {
             $('.ediBtn').click(function () {
                 var id = $(this).data('id');
-                var name = $(this).data('name');
-                var email = $(this).data('email');
-                var image = $(this).data('image');
+                var amount = $(this).data('amount');
+                var old_amount = $(this).data('amount');
+                var member = $(this).data('member');
 
 
                 $('#ediID').val(id);
-                $('#myEdiModal [name=name]').val(name);
-                $('#myEdiModal [name=email]').val(email);
-                $("#userImage1").attr("src", image);
+                $('#old_amount').val(old_amount);
+                $('#myEdiModal [name=amount]').val(amount);
+                $('#myEdiModal [name=userID]').val(member);
 
             });
         });
@@ -97,5 +94,6 @@
                 ]
             });
         });
+
     </script>
 @endsection

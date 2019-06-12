@@ -13,10 +13,20 @@
     <div class="row">
         <div class="col-md-12 col-xl-12 mb-3">
             <hr>
-            <h4 class="text-muted text-center">{{date('F, Y', strtotime($table->month_date))}}</h4>
+            <h4 class="text-muted text-center">{{$table->month_date}}</h4>
             <hr>
         </div>
     </div>
+
+                        @php
+                        $expense = $table->expense->sum('amount');
+                        $meal = $table->meal->sum('nom');
+                        if ($meal > 0 && $expense > 0){
+                        $rate = $expense/$meal;
+                        }
+                        else
+                        $rate = 0;
+                        @endphp
     <!-- Icon Cards-->
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-3">
@@ -26,7 +36,7 @@
                         <i class="fas fa-fw fa-comments"></i>
                     </div>
                     <div class="">Mess Balance</div>
-                    <div class="mt-2">1000 TK.</div>
+                    <div class="mt-2">{{money($table->balance)}}</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                     <span class="float-right">
@@ -42,7 +52,7 @@
                         <i class="fas fa-fw fa-list"></i>
                     </div>
                     <div class="">Total Expense</div>
-                    <div class="mt-2">{{money($total_expense)}}</div>
+                    <div class="mt-2">{{money($expense)}}</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                     <span class="float-right">
@@ -58,7 +68,7 @@
                         <i class="fas fa-fw fa-shopping-cart"></i>
                     </div>
                     <div class="">Total Meal</div>
-                    <div class="mt-2">100.5</div>
+                    <div class="mt-2">{{pub_num($meal)}}</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                     <span class="float-right">
@@ -74,7 +84,7 @@
                         <i class="fas fa-fw fa-life-ring"></i>
                     </div>
                     <div class="">Meal Rate</div>
-                    <div class="mt-2">27.00</div>
+                    <div class="mt-2">{{pub_num($rate)}}</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                     <span class="float-right">

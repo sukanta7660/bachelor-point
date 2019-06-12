@@ -43,23 +43,34 @@
                     <tr>
                         <th>S/N</th>
                         <th>Month</th>
-                        <th>Total Meal</th>
+                        <th>Balance</th>
                         <th>Total Expense</th>
+                        <th>Total Meal</th>
                         <th>Meal Rate</th>
                         <th class="text-right">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($table as $row)
+                        @php
+                        $expense = $row->expense->sum('amount');
+                        $meal = $row->meal->sum('nom');
+                        if ($meal > 0 && $expense > 0){
+                        $rate = $row->expense->sum('amount')/$row->meal->sum('nom');
+                        }
+                        else
+                        $rate = 0;
+                        @endphp
                         <tr>
                             <td class="pt-0 pb-0">{{$row->monthID}}</td>
-                            <td class="pt-0 pb-0">{{date('F, Y', strtotime($row->month_date))}}</td>
-                            <td class="pt-0 pb-0">{{$row->monthID}}</td>
-                            <td class="pt-0 pb-0">{{$row->monthID}}</td>
-                            <td class="pt-0 pb-0">{{$row->monthID}}</td>
+                            <td class="pt-0 pb-0">{{$row->month_date}}</td>
+                            <td class="pt-0 pb-0">{{money($row->balance)}}</td>
+                            <td class="pt-0 pb-0">{{money($expense)}}</td>
+                            <td class="pt-0 pb-0">{{meal($meal)}}</td>
+                            <td class="pt-0 pb-0">{{pub_num($rate)}}</td>
                             <td class="text-right pt-0 pb-0">
                                 <a href="{{url('month/inner',['id' => $row->monthID])}}" class="btn btn-info btn-sm p-0 pr-1 pl-1" title="details"><i class="fa fa-arrow-right"></i></a>
-                                <button title="edit" class="btn btn-primary btn-sm p-0 ediBtn" data-id="{{$row->monthID}}" data-month="{{date('m/d/y', strtotime($row->month_date))}}" data-toggle="modal" data-target="#myEdiModal"><i class="fa fa-edit"></i></button>
+                                <button title="edit" class="btn btn-primary btn-sm p-0 ediBtn" data-id="{{$row->monthID}}" data-month="{{$row->month_date}}" data-toggle="modal" data-target="#myEdiModal"><i class="fa fa-edit"></i></button>
                                 <a href="{{url('month/del',['id' => $row->monthID])}}" title="delete" onclick="return confirm('Are you sure to Delete?')" class="btn btn-danger btn-sm p-0"><i class="fa fa-trash-alt"></i></a>
                             </td>
                         </tr>
@@ -79,8 +90,8 @@
 
 
                 $('#ediID').val(id);
-                $('#myEdiModal [name=month]').val(month);
 
+                $('#myEdiModal [name=month]').val(month);
             });
         });
         $(function () {
@@ -89,7 +100,7 @@
                 order: [[ 0, "desc" ]],
                 iDisplayLength: 25,
                 columnDefs: [
-                    { orderable: false, "targets": [5] }//For Column Order
+                    { orderable: false, "targets": [6] }//For Column Order
                 ]
             });
         });

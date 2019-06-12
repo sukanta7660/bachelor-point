@@ -20,7 +20,7 @@ class MonthController extends Controller
         $request->validate([
             'month' => 'required',
         ]);
-        $table->month_date = db_date($request->month).' '.date('0:0:0');
+        $table->month_date = $request->month;
         $table->save();
 
         return redirect()->back()->with('success','Data Created Successfully!!');
@@ -31,7 +31,7 @@ class MonthController extends Controller
         $request->validate([
             'month' => 'required',
         ]);
-        $table->month_date = db_date($request->month).' '.date('0:0:0');
+        $table->month_date = $request->month;
         $table->save();
 
         return redirect()->back()->with('edit','Data edited Successfully!!');
@@ -47,11 +47,10 @@ class MonthController extends Controller
 
     public function inner($id){
         $table = Month::find($id);
-        $total_expense = DB::table('expenses')->select('amount')->where('monthID', session('monthID'))->sum('amount');
         session([
             'monthID' => $table->monthID,
             'month_date' => $table->month_date
         ]);
-        return view('inner')->with(['table' => $table, 'total_expense' => $total_expense]);
+        return view('inner')->with(['table' => $table]);
     }
 }

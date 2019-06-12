@@ -18,6 +18,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email','userType','imageName', 'password',
     ];
+    public function meal()
+    {
+        return $this->hasMany('App\Meal','userID');
+    }
 
     /**
      * The attributes that should be hidden for arrays.
