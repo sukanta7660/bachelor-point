@@ -49,8 +49,8 @@
                     </div>
 
                     <!--Footer-->
-                    <div class="modal-footer justify-content-center">
-                        <button type="submit" class="btn btn-info btn-sm">Save Month</button>
+                    <div class="modal-footer justify-content-right">
+                        <button type="submit" class="btn btn-info btn-sm">Save Deposit</button>
                         <button type="button" class="btn btn-outline-info btn-sm text-black-50" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -116,7 +116,7 @@
                     </div>
 
                     <!--Footer-->
-                    <div class="modal-footer justify-content-center">
+                    <div class="modal-footer justify-content-right">
                         <button type="submit" class="btn btn-info btn-sm">Save Changes</button>
                         <button type="button" class="btn btn-outline-info btn-sm text-black-50" data-dismiss="modal">Cancel</button>
                     </div>

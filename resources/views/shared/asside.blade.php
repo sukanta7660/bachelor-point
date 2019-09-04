@@ -23,7 +23,7 @@
     </li>
     <li class="nav-item {{ Request::is('bill') ? 'active' : '' }}">
         <a class="nav-link" href="{{url('bill')}}">
-            <i class="fas fa-fw fa-users"></i>
+            <i class="fas fa-fw fa-comments-dollar"></i>
             <span>Bill</span></a>
     </li>
     <li class="nav-item">

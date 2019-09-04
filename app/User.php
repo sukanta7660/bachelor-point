@@ -18,9 +18,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email','userType','imageName', 'password',
     ];
-    public function meal()
-    {
+    public function meal(){
         return $this->hasMany('App\Meal','userID');
+    }
+
+    public function deposit(){
+        return $this->hasMany('App\Deposite','userID');
     }
 
     /**
